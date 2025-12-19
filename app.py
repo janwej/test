@@ -1,15 +1,7 @@
-import streamlit as st
-import streamlit.components.v1 as components
+from flask import Flask, render_template_string
 
-# Page configuration
-st.set_page_config(
-    page_title="My Portfolio",
-    page_icon="💼",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
+app = Flask(__name__)
 
-# HTML Template
 HTML_TEMPLATE = '''
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +25,6 @@ HTML_TEMPLATE = '''
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             background: #0f0f14;
-            margin: 0;
-            padding: 0;
         }
         
         .sidebar {
@@ -187,7 +177,7 @@ HTML_TEMPLATE = '''
         <!-- Home Page -->
         <div id="page-home" class="page-content active">
             <div class="pt-32 pb-20 px-6">
-                <div class="max-w-5xl mx-auto space-y-24">
+                <div class="max-w-5xl mx-auto space-y-2">
                     
                     <!-- About Section -->
                     <section id="about" class="min-h-screen">
@@ -197,7 +187,7 @@ HTML_TEMPLATE = '''
                                     Welcome 👋
                                 </div>
                                 <h1 class="text-6xl md:text-7xl font-bold mb-4 leading-tight">
-                                    Hi, I'm <span class="text-violet-400">Your Name</span>
+                                    Hi, I'm <span class="text-gray-400">Jan Jacek Wejchert</span>
                                 </h1>
                                 <p class="text-2xl text-gray-300 mb-2">Full Stack Developer</p>
                                 <p class="text-lg text-gray-400">Based in Madrid, Spain</p>
@@ -207,6 +197,18 @@ HTML_TEMPLATE = '''
                                 <h2 class="text-2xl font-bold mb-4">About Me</h2>
                                 <p class="text-gray-300 text-lg leading-relaxed">
                                     Passionate developer with expertise in building modern web applications. 
+                                    I love creating intuitive user experiences and solving complex problems through elegant code.
+                                    With a strong foundation in both frontend and backend technologies, I strive to deliver 
+                                    high-quality solutions that make a difference. Passionate developer with expertise in building modern web applications. 
+                                    I love creating intuitive user experiences and solving complex problems through elegant code.
+                                    With a strong foundation in both frontend and backend technologies, I strive to deliver 
+                                    high-quality solutions that make a difference. Passionate developer with expertise in building modern web applications. 
+                                    I love creating intuitive user experiences and solving complex problems through elegant code.
+                                    With a strong foundation in both frontend and backend technologies, I strive to deliver 
+                                    high-quality solutions that make a difference. Passionate developer with expertise in building modern web applications. 
+                                    I love creating intuitive user experiences and solving complex problems through elegant code.
+                                    With a strong foundation in both frontend and backend technologies, I strive to deliver 
+                                    high-quality solutions that make a difference. Passionate developer with expertise in building modern web applications. 
                                     I love creating intuitive user experiences and solving complex problems through elegant code.
                                     With a strong foundation in both frontend and backend technologies, I strive to deliver 
                                     high-quality solutions that make a difference.
@@ -231,12 +233,165 @@ HTML_TEMPLATE = '''
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                                             </svg>
                                         </div>
+                                        <h3 class="text-xl font-bold">Frontend Development</h3>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">React</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">TypeScript</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Tailwind CSS</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Next.js</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-xl font-bold">Backend Development</h3>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Node.js</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Python</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Express</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Django</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-xl font-bold">Database & Storage</h3>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">PostgreSQL</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">MongoDB</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Redis</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-xl font-bold">DevOps & Tools</h3>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Docker</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">AWS</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Git</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">CI/CD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Education Section -->
+                    <section id="education" class="min-h-screen">
+                        <div class="space-y-8">
+                            <div>
+                                <h2 class="text-5xl font-bold mb-4">Education</h2>
+                                <p class="text-gray-400 text-lg">My academic background</p>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-8 border border-zinc-800/50 card-hover">
+                                    <div class="flex items-start justify-between flex-wrap gap-4">
+                                        <div class="flex gap-4">
+                                            <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-xl font-bold mb-1">Master of Science in Computer Science</h3>
+                                                <p class="text-gray-300 mb-2">University Name</p>
+                                                <p class="text-sm text-gray-400">Specialized in Machine Learning and Software Engineering</p>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
+                                            2020 - 2022
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-8 border border-zinc-800/50 card-hover">
+                                    <div class="flex items-start justify-between flex-wrap gap-4">
+                                        <div class="flex gap-4">
+                                            <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-xl font-bold mb-1">Bachelor of Science in Computer Engineering</h3>
+                                                <p class="text-gray-300 mb-2">University Name</p>
+                                                <p class="text-sm text-gray-400">Graduated with Honors, GPA: 3.8/4.0</p>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
+                                            2016 - 2020
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-8 border border-zinc-800/50 card-hover">
+                                    <div class="flex items-start justify-between flex-wrap gap-4">
+                                        <div class="flex gap-4">
+                                            <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                                <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-xl font-bold mb-1">AWS Certified Solutions Architect</h3>
+                                                <p class="text-gray-300 mb-2">Amazon Web Services</p>
+                                                <p class="text-sm text-gray-400">Professional level cloud architecture certification</p>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
+                                            2023
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contact Section -->
+                    <section id="contact" class="min-h-screen pb-20">
+                        <div class="space-y-8">
+                            <div>
+                                <h2 class="text-5xl font-bold mb-4">Get In Touch</h2>
+                                <p class="text-gray-400 text-lg">Let's connect and create something amazing together</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <a href="mailto:jan.wejchert@student.ie.edu" class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover block">
+                                    <div class="flex items-center gap-4 mb-3">
+                                        <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                            </svg>
+                                        </div>
                                         <h3 class="text-xl font-bold">Email</h3>
                                     </div>
-                                    <p class="text-gray-300">your.email@example.com</p>
+                                    <p class="text-gray-300">jan.wejchert@student.ie.edu</p>
                                 </a>
                                 
-                                <a href="https://github.com/yourusername" target="_blank" class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover block">
+                                <a href="https://github.com/janwej" target="_blank" class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover block">
                                     <div class="flex items-center gap-4 mb-3">
                                         <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center">
                                             <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
@@ -245,10 +400,10 @@ HTML_TEMPLATE = '''
                                         </div>
                                         <h3 class="text-xl font-bold">GitHub</h3>
                                     </div>
-                                    <p class="text-gray-300">github.com/yourusername</p>
+                                    <p class="text-gray-300">github.com/janwej</p>
                                 </a>
                                 
-                                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover block">
+                                <a href="https://linkedin.com/in/jan-wejchert" target="_blank" class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover block">
                                     <div class="flex items-center gap-4 mb-3">
                                         <div class="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center">
                                             <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24">
@@ -257,7 +412,7 @@ HTML_TEMPLATE = '''
                                         </div>
                                         <h3 class="text-xl font-bold">LinkedIn</h3>
                                     </div>
-                                    <p class="text-gray-300">linkedin.com/in/yourprofile</p>
+                                    <p class="text-gray-300">linkedin.com/in/jan-wejchert</p>
                                 </a>
                                 
                                 <a href="https://twitter.com/yourusername" target="_blank" class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover block">
@@ -564,10 +719,59 @@ HTML_TEMPLATE = '''
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
+            
+            if (sidebar.classList.contains('sidebar-closed')) {
+                sidebar.classList.remove('sidebar-closed');
+                sidebar.classList.add('sidebar-open');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('sidebar-closed');
+                sidebar.classList.remove('sidebar-open');
+                overlay.classList.add('hidden');
+            }
+        }
+        
+        function showPage(page) {
+            currentPage = page;
+            
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(p => {
+                p.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById('page-' + page).classList.add('active');
+            
+            // Update menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                const itemPage = item.getAttribute('data-page');
+                if (itemPage === page) {
+                    item.classList.add('active');
+                    item.classList.remove('text-gray-400');
+                } else {
+                    item.classList.remove('active');
+                    item.classList.add('text-gray-400');
+                }
+            });
+            
+            // Show/hide home nav
+            const homeNav = document.getElementById('home-nav');
+            if (page === 'home') {
+                homeNav.classList.remove('hidden');
+                homeNav.classList.add('flex');
+            } else {
+                homeNav.classList.add('hidden');
+                homeNav.classList.remove('flex');
+            }
+            
+            // Close sidebar
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
             sidebar.classList.add('sidebar-closed');
             sidebar.classList.remove('sidebar-open');
             overlay.classList.add('hidden');
             
+            // Scroll to top
             window.scrollTo(0, 0);
         }
         
@@ -590,6 +794,7 @@ HTML_TEMPLATE = '''
             });
         }
         
+        // Update active section based on scroll position
         const observerOptions = {
             root: null,
             rootMargin: '-50% 0px -50% 0px',
@@ -613,201 +818,9 @@ HTML_TEMPLATE = '''
 </html>
 '''
 
-# Render the HTML
-components.html(HTML_TEMPLATE, height=800, scrolling=True) overlay = document.getElementById('overlay');
-            
-            if (sidebar.classList.contains('sidebar-closed')) {
-                sidebar.classList.remove('sidebar-closed');
-                sidebar.classList.add('sidebar-open');
-                overlay.classList.remove('hidden');
-            } else {
-                sidebar.classList.add('sidebar-closed');
-                sidebar.classList.remove('sidebar-open');
-                overlay.classList.add('hidden');
-            }
-        }
-        
-        function showPage(page) {
-            currentPage = page;
-            
-            document.querySelectorAll('.page-content').forEach(p => {
-                p.classList.remove('active');
-            });
-            
-            document.getElementById('page-' + page).classList.add('active');
-            
-            document.querySelectorAll('.menu-item').forEach(item => {
-                const itemPage = item.getAttribute('data-page');
-                if (itemPage === page) {
-                    item.classList.add('active');
-                    item.classList.remove('text-gray-400');
-                } else {
-                    item.classList.remove('active');
-                    item.classList.add('text-gray-400');
-                }
-            });
-            
-            const homeNav = document.getElementById('home-nav');
-            if (page === 'home') {
-                homeNav.classList.remove('hidden');
-                homeNav.classList.add('flex');
-            } else {
-                homeNav.classList.add('hidden');
-                homeNav.classList.remove('flex');
-            }
-            
-            const sidebar = document.getElementById('sidebar');
-            const>
-                                        <h3 class="text-xl font-bold">Frontend Development</h3>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">React</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">TypeScript</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Tailwind CSS</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Next.js</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover">
-                                    <div class="flex items-center gap-3 mb-4">
-                                        <div class="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
-                                            </svg>
-                                        </div>
-                                        <h3 class="text-xl font-bold">Backend Development</h3>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Node.js</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Python</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Express</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Django</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover">
-                                    <div class="flex items-center gap-3 mb-4">
-                                        <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
-                                            </svg>
-                                        </div>
-                                        <h3 class="text-xl font-bold">Database & Storage</h3>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">PostgreSQL</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">MongoDB</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Redis</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover">
-                                    <div class="flex items-center gap-3 mb-4">
-                                        <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                                            </svg>
-                                        </div>
-                                        <h3 class="text-xl font-bold">DevOps & Tools</h3>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Docker</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">AWS</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Git</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">CI/CD</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+@app.route('/')
+def home():
+    return render_template_string(HTML_TEMPLATE)
 
-                    <!-- Education Section -->
-                    <section id="education" class="min-h-screen">
-                        <div class="space-y-8">
-                            <div>
-                                <h2 class="text-5xl font-bold mb-4">Education</h2>
-                                <p class="text-gray-400 text-lg">My academic background</p>
-                            </div>
-                            
-                            <div class="space-y-4">
-                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-8 border border-zinc-800/50 card-hover">
-                                    <div class="flex items-start justify-between flex-wrap gap-4">
-                                        <div class="flex gap-4">
-                                            <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-xl font-bold mb-1">Master of Science in Computer Science</h3>
-                                                <p class="text-gray-300 mb-2">University Name</p>
-                                                <p class="text-sm text-gray-400">Specialized in Machine Learning and Software Engineering</p>
-                                            </div>
-                                        </div>
-                                        <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
-                                            2020 - 2022
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-8 border border-zinc-800/50 card-hover">
-                                    <div class="flex items-start justify-between flex-wrap gap-4">
-                                        <div class="flex gap-4">
-                                            <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-xl font-bold mb-1">Bachelor of Science in Computer Engineering</h3>
-                                                <p class="text-gray-300 mb-2">University Name</p>
-                                                <p class="text-sm text-gray-400">Graduated with Honors, GPA: 3.8/4.0</p>
-                                            </div>
-                                        </div>
-                                        <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
-                                            2016 - 2020
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-8 border border-zinc-800/50 card-hover">
-                                    <div class="flex items-start justify-between flex-wrap gap-4">
-                                        <div class="flex gap-4">
-                                            <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                                                <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-xl font-bold mb-1">AWS Certified Solutions Architect</h3>
-                                                <p class="text-gray-300 mb-2">Amazon Web Services</p>
-                                                <p class="text-sm text-gray-400">Professional level cloud architecture certification</p>
-                                            </div>
-                                        </div>
-                                        <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
-                                            2023
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Contact Section -->
-                    <section id="contact" class="min-h-screen pb-20">
-                        <div class="space-y-8">
-                            <div>
-                                <h2 class="text-5xl font-bold mb-4">Get In Touch</h2>
-                                <p class="text-gray-400 text-lg">Let's connect and create something amazing together</p>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <a href="mailto:your.email@example.com" class="bg-zinc-900/30 backdrop-blur-xl rounded-3xl p-6 border border-zinc-800/50 card-hover block">
-                                    <div class="flex items-center gap-4 mb-3">
-                                        <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                            </svg>
-                                        </div
+if __name__ == '__main__':
+    app.run(debug=True)
