@@ -77,6 +77,10 @@ HTML_TEMPLATE = '''
         .page-content.active {
             display: block;
         }
+        
+        section {
+            scroll-margin-top: 100px;
+        }
     </style>
 </head>
 <body class="text-white">
@@ -156,7 +160,7 @@ HTML_TEMPLATE = '''
                         </button>
                         <span class="text-xl font-bold">Portfolio</span>
                     </div>
-                    <div id="home-nav" class="hidden md:flex items-center gap-2 bg-zinc-900/50 rounded-full p-1.5">
+                    <div id="home-nav" class="md:flex items-center gap-2 bg-zinc-900/50 rounded-full p-1.5">
                         <button onclick="scrollToSection('about')" class="nav-pill active px-5 py-2 rounded-full text-sm font-medium">
                             About
                         </button>
@@ -170,6 +174,12 @@ HTML_TEMPLATE = '''
                             Contact
                         </button>
                     </div>
+                    <button id="back-home-btn" onclick="showPage('home')" class="hidden items-center gap-2 px-5 py-2 bg-zinc-900/50 rounded-full text-sm font-medium hover:bg-zinc-800/50 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Back to Home
+                    </button>
                 </div>
             </div>
         </nav>
@@ -177,10 +187,10 @@ HTML_TEMPLATE = '''
         <!-- Home Page -->
         <div id="page-home" class="page-content active">
             <div class="pt-32 pb-20 px-6">
-                <div class="max-w-5xl mx-auto space-y-2">
+                <div class="max-w-5xl mx-auto space-y-12">
                     
                     <!-- About Section -->
-                    <section id="about" class="min-h-screen">
+                    <section id="about" class="pb-20">
                         <div class="space-y-8">
                             <div>
                                 <div class="inline-block px-4 py-1.5 bg-zinc-800/50 rounded-full text-sm font-medium text-gray-300 mb-4">
@@ -209,16 +219,13 @@ HTML_TEMPLATE = '''
                                     I love creating intuitive user experiences and solving complex problems through elegant code.
                                     With a strong foundation in both frontend and backend technologies, I strive to deliver 
                                     high-quality solutions that make a difference. Passionate developer with expertise in building modern web applications. 
-                                    I love creating intuitive user experiences and solving complex problems through elegant code.
-                                    With a strong foundation in both frontend and backend technologies, I strive to deliver 
-                                    high-quality solutions that make a difference.
                                 </p>
                             </div>
                         </div>
                     </section>
 
                     <!-- Skills Section -->
-                    <section id="skills" class="min-h-screen">
+                    <section id="skills" class="pb-20">
                         <div class="space-y-8">
                             <div>
                                 <h2 class="text-5xl font-bold mb-4">Technical Skills</h2>
@@ -233,13 +240,14 @@ HTML_TEMPLATE = '''
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                                             </svg>
                                         </div>
-                                        <h3 class="text-xl font-bold">Frontend Development</h3>
+                                        <h3 class="text-xl font-bold">Programming & Analytical Languages</h3>
                                     </div>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">React</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">TypeScript</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Tailwind CSS</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Next.js</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Python</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">SQL</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">R (RStudio</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Stata</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Mathematica</span>
                                     </div>
                                 </div>
                                 
@@ -250,13 +258,15 @@ HTML_TEMPLATE = '''
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
                                             </svg>
                                         </div>
-                                        <h3 class="text-xl font-bold">Backend Development</h3>
+                                        <h3 class="text-xl font-bold">Tools & Environments</h3>
                                     </div>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Node.js</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Python</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Express</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Django</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Jupyter Notebokk</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">PyCharm</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">GitHub</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">VS Code</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">RStudio</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">SQL development environments</span>
                                     </div>
                                 </div>
                                 
@@ -267,12 +277,13 @@ HTML_TEMPLATE = '''
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
                                             </svg>
                                         </div>
-                                        <h3 class="text-xl font-bold">Database & Storage</h3>
+                                        <h3 class="text-xl font-bold">Databases & Storage</h3>
                                     </div>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">PostgreSQL</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Relational databases (DB2, MySQL)</span>
                                         <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">MongoDB</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Redis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">HDFS & object storage (S3)</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Data lakes</span>
                                     </div>
                                 </div>
                                 
@@ -283,13 +294,13 @@ HTML_TEMPLATE = '''
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
                                             </svg>
                                         </div>
-                                        <h3 class="text-xl font-bold">DevOps & Tools</h3>
+                                        <h3 class="text-xl font-bold">Data Analysis & Modeling</h3>
                                     </div>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Docker</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">AWS</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Git</span>
-                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">CI/CD</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Data cleaning & preparation</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Exploratory data analysis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Time series analysis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800/50 rounded-full text-sm text-gray-300">Forecasting</span>
                                     </div>
                                 </div>
                             </div>
@@ -297,7 +308,7 @@ HTML_TEMPLATE = '''
                     </section>
 
                     <!-- Education Section -->
-                    <section id="education" class="min-h-screen">
+                    <section id="education" class="pb-20">
                         <div class="space-y-8">
                             <div>
                                 <h2 class="text-5xl font-bold mb-4">Education</h2>
@@ -315,13 +326,13 @@ HTML_TEMPLATE = '''
                                                 </svg>
                                             </div>
                                             <div>
-                                                <h3 class="text-xl font-bold mb-1">Master of Science in Computer Science</h3>
-                                                <p class="text-gray-300 mb-2">University Name</p>
-                                                <p class="text-sm text-gray-400">Specialized in Machine Learning and Software Engineering</p>
+                                                <h3 class="text-xl font-bold mb-1">Master of Science in Business Analytics and Data Science</h3>
+                                                <p class="text-gray-300 mb-2">IE School of Science and Technology, Madrid, Spain</p>
+                                                <p class="text-sm text-gray-400">Running GPA: 3,92 out of 4</p>
                                             </div>
                                         </div>
                                         <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
-                                            2020 - 2022
+                                            2025 - 2026
                                         </div>
                                     </div>
                                 </div>
@@ -336,13 +347,13 @@ HTML_TEMPLATE = '''
                                                 </svg>
                                             </div>
                                             <div>
-                                                <h3 class="text-xl font-bold mb-1">Bachelor of Science in Computer Engineering</h3>
-                                                <p class="text-gray-300 mb-2">University Name</p>
-                                                <p class="text-sm text-gray-400">Graduated with Honors, GPA: 3.8/4.0</p>
+                                                <h3 class="text-xl font-bold mb-1">Bachelor of Science in Economics</h3>
+                                                <p class="text-gray-300 mb-2">University of St Andrews, St Andrews, Scotland</p>
+                                                <p class="text-sm text-gray-400">Graduated with Honours of the Second Class (Division l)</p>
                                             </div>
                                         </div>
                                         <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
-                                            2016 - 2020
+                                            2021 - 2025
                                         </div>
                                     </div>
                                 </div>
@@ -356,13 +367,13 @@ HTML_TEMPLATE = '''
                                                 </svg>
                                             </div>
                                             <div>
-                                                <h3 class="text-xl font-bold mb-1">AWS Certified Solutions Architect</h3>
-                                                <p class="text-gray-300 mb-2">Amazon Web Services</p>
-                                                <p class="text-sm text-gray-400">Professional level cloud architecture certification</p>
+                                                <h3 class="text-xl font-bold mb-1">International A Levels</h3>
+                                                <p class="text-gray-300 mb-2">Akademeia High School, Warsaw, Poland</p>
+                                                <p class="text-sm text-gray-400">Economics, Mathematics, Further Mathematics, Polish (A*, A*, A*, A)</p>
                                             </div>
                                         </div>
                                         <div class="px-4 py-2 bg-zinc-800/50 rounded-xl text-sm text-gray-300">
-                                            2023
+                                            2019 - 2021
                                         </div>
                                     </div>
                                 </div>
@@ -371,7 +382,7 @@ HTML_TEMPLATE = '''
                     </section>
 
                     <!-- Contact Section -->
-                    <section id="contact" class="min-h-screen pb-20">
+                    <section id="contact" class="pb-20">
                         <div class="space-y-8">
                             <div>
                                 <h2 class="text-5xl font-bold mb-4">Get In Touch</h2>
@@ -454,12 +465,12 @@ HTML_TEMPLATE = '''
                                 <div class="inline-block px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs font-medium mb-3">
                                     E-Commerce
                                 </div>
-                                <h3 class="text-2xl font-bold mb-2">E-Commerce Platform</h3>
-                                <p class="text-gray-400 mb-4">Full-stack e-commerce solution with real-time inventory, payment processing, and admin dashboard.</p>
+                                <h3 class="text-2xl font-bold mb-2">F1 Data Project</h3>
+                                <p class="text-gray-400 mb-4">Fun project conducted for python class to play with f1 data set and to come up with some story from the given data</p>
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-3 py-1 bg-zinc-800/50 rounded-full text-xs text-gray-300">React</span>
-                                    <span class="px-3 py-1 bg-zinc-800/50 rounded-full text-xs text-gray-300">Node.js</span>
-                                    <span class="px-3 py-1 bg-zinc-800/50 rounded-full text-xs text-gray-300">PostgreSQL</span>
+                                    <span class="px-3 py-1 bg-zinc-800/50 rounded-full text-xs text-gray-300">Comeback King</span>
+                                    <span class="px-3 py-1 bg-zinc-800/50 rounded-full text-xs text-gray-300">Decade Champions</span>
+                                    <span class="px-3 py-1 bg-zinc-800/50 rounded-full text-xs text-gray-300">Who will come out on top</span>
                                 </div>
                                 <button class="w-full px-4 py-2 bg-zinc-800/50 hover:bg-zinc-700/50 rounded-xl transition-colors">View Project</button>
                             </div>
@@ -754,14 +765,19 @@ HTML_TEMPLATE = '''
                 }
             });
             
-            // Show/hide home nav
+            // Show/hide home nav and back button
             const homeNav = document.getElementById('home-nav');
+            const backBtn = document.getElementById('back-home-btn');
             if (page === 'home') {
                 homeNav.classList.remove('hidden');
-                homeNav.classList.add('flex');
+                homeNav.classList.add('md:flex');
+                backBtn.classList.add('hidden');
+                backBtn.classList.remove('md:flex');
             } else {
                 homeNav.classList.add('hidden');
-                homeNav.classList.remove('flex');
+                homeNav.classList.remove('md:flex');
+                backBtn.classList.remove('hidden');
+                backBtn.classList.add('md:flex');
             }
             
             // Close sidebar
